@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Carousel from "@/components/Carousel";
 
 export default function Home() {
   return (
-      <div>
-        Hello k-shop
-      </div>
+      <main className="py-8">
+          <Carousel />
+      </main>
   );
 }
