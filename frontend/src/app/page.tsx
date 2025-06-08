@@ -6,6 +6,7 @@ export default function Home() {
   return (
       <>
           <main className="py-8">
+              Hello
               <div className="max-w-7xl mx-auto px-4">
                   <Carousel />
                   <hr className="my-8 border-gray-300" />
