@@ -1,4 +1,3 @@
-// components/Sidebar.tsx
 import Link from 'next/link';
 
 export default function AdminSidebar  () {
@@ -11,12 +10,22 @@ export default function AdminSidebar  () {
                 <ul>
                     <li>
                         <Link className="block px-4 py-2 text-sm hover:bg-gray-700" href="/admin/products">
-                            Продукты
+                            Товары
                         </Link>
                     </li>
                     <li>
                         <Link className="block px-4 py-2 text-sm hover:bg-gray-700" href="/admin/categories">
                             Категории
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className="block px-4 py-2 text-sm hover:bg-gray-700" href="/admin/subcategories">
+                           Подкатегории
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className="block px-4 py-2 text-sm hover:bg-gray-700" href="/admin/orders">
+                            Заказы
                         </Link>
                     </li>
                 </ul>

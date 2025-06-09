@@ -1,25 +1,41 @@
 'use client';
 
-import { useState } from 'react';
+import {useState} from 'react';
+import {useRouter} from 'next/navigation';
+import {usersStore} from '@/stores/users/usersStore';
+
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const login = usersStore((state) => state.login);
+    const loading = usersStore((state) => state.loading);
+    const error = usersStore((state) => state.error);
+
+    const router = useRouter();
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!email || !password) {
-            setError('Пожалуйста, заполните все поля');
+            alert('Пожалуйста, заполните все поля');
             return;
         }
 
-        setError('');
-        setSubmitted(true);
+        try {
+            await login(email, password);
+            const { role } = usersStore.getState().user || {};
 
-        console.log('Отправка данных:', { email, password });
+            if (role === 'USER') {
+                router.push('/');
+            } else {
+                router.push('/admin/orders');
+            }
+        } catch {
+            setSubmitted(false);
+        }
     };
 
     return (
@@ -56,14 +72,15 @@ export default function Login() {
 
                 {error && <p className="text-red-600 text-sm">{error}</p>}
                 {submitted && !error && (
-                    <p className="text-green-600 text-sm">Форма успешно отправлена!</p>
+                    <p className="text-green-600 text-sm">Вход выполнен успешно!</p>
                 )}
 
                 <button
                     type="submit"
-                    className="w-full bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition"
+                    className={`w-full py-2 px-4 rounded text-white ${loading ? 'bg-gray-500' : 'bg-black hover:bg-gray-800'} transition`}
+                    disabled={loading}
                 >
-                    Войти
+                    {loading ? 'Вход...' : 'Войти'}
                 </button>
             </form>
         </div>
