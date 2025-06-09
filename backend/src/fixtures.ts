@@ -3,9 +3,9 @@ import { randomUUID } from 'crypto';
 
 const dbConfig = {
     host: 'localhost',
-    port: 3307,
+    port: 3306,
     user: 'root',
-    password: 'root_password',
+    password: 'karina123',
     database: 'shop_db',
 };
 

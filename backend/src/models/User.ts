@@ -6,14 +6,14 @@ import type { RowDataPacket } from "mysql2";
 const SALT_WORK_FACTOR = 10;
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    port:  3307,
-    user: 'root',
-    password:  'root_password',
-    database: 'shop_db',
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "karina123",
+    database: "shop_db",
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
 });
 
 export interface User {
